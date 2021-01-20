@@ -12,29 +12,29 @@ services:
       - tcc-td-network
     volumes:
       - ./:/app
-  elk:
-    build:
-      context: .
-      dockerfile: ./docker/elk/Dockerfile
-    ports:
-      - 5681:5601
-      - 9200:9200
-    environment:
-      LOGSTASH_START: 0
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - default
-      - tcc-td-network
-    volumes:
-        - ./docker/elk/logs:/var/log/elasticsearch
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    deploy:
-      resources:
-        limits:
-          memory: 2g
+#  elk:
+#    build:
+#      context: .
+#      dockerfile: ./docker/elk/Dockerfile
+#    ports:
+#      - 5681:5601
+#      - 9200:9200
+#    environment:
+#      LOGSTASH_START: 0
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - default
+#      - tcc-td-network
+#    volumes:
+#        - ./docker/elk/logs:/var/log/elasticsearch
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 2g
 #  sonarqube:
 #    build: ./docker/sonarqube
 #    container_name: marco-polo-sonarqube
@@ -53,3 +53,8 @@ services:
 #      # Important
 #      # https://github.com/SonarSource/docker-sonarqube/issues/146
 #      # https://stackoverflow.com/questions/52917695/docker-compose-volume-permissions-linux
+
+
+networks:
+  tcc-td-network:
+    external: true
