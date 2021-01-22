@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  standard_manager_api:
+  standard-manager-api:
     build:
       context: .
       dockerfile: ./docker/python/Dockerfile
@@ -8,7 +8,6 @@ services:
     ports:
       - 8000:8000
     networks:
-      - default
       - tcc-td-network
     volumes:
       - ./:/app
