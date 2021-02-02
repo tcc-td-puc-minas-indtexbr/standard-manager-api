@@ -1,0 +1,2 @@
+terraform import module.pipeline.aws_s3_bucket.codepipeline_bucket codepipeline-sa-east-1-422421276894
+terraform import module.pipeline.aws_codestarconnections_connection.connection arn:aws:codestar-connections:sa-east-1:$1:connection/b1f0018d-d2c7-4ae0-8a2d-40644a29e112
