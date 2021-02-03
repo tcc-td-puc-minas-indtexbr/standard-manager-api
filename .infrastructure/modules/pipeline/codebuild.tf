@@ -12,6 +12,8 @@ resource "aws_codebuild_project" "app_project" {
     image = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
     type = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
+    // If set to true, enables running the Docker daemon inside a Docker container.
+    privileged_mode = true
 
     environment_variable {
       name = "ACCOUNT_ID"
