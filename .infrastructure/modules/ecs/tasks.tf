@@ -10,6 +10,7 @@ data "template_file" "api_task" {
     desired_task_memory = var.desired_task_memory
     desired_task_memory_reservation = var.desired_task_memory_reservation
     working_directory = "/${var.cluster_name}"
+    region = var.region
   }
 }
 

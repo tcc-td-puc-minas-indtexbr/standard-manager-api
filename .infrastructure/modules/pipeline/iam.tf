@@ -29,7 +29,7 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
 }
 
 resource "aws_iam_role" "codebuild_role" {
-  name = "codebuild_project_role"
+  name = "codebuild-${var.cluster_name}-role"
 
   assume_role_policy = file("${path.module}/templates/policies/codebuild_role.json")
 

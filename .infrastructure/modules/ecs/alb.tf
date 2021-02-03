@@ -18,14 +18,6 @@ resource "aws_alb" "app_alb" {
   subnets         = concat(var.public_subnet_1a, var.public_subnet_1b)
   security_groups = [var.app_sg_id, var.alb_sg_id]
 
-//  subnet_mapping {
-//    subnet_id     = var.public_subnet_1a
-//  }
-//
-//  subnet_mapping {
-//    subnet_id     = var.public_subnet_1b
-//  }
-
   tags = {
     Name        = "${var.cluster_name}-alb"
     Environment = var.cluster_name

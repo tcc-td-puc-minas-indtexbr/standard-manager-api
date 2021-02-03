@@ -1,3 +1,7 @@
+variable "region" {
+  default = ""
+}
+
 variable "cluster_name" {
   description = "The cluster_name"
 }

@@ -14,6 +14,7 @@ module "ecs" {
   container_port      = var.container_port
   alb_port            = var.alb_port
   vpc_id              = module.vpc.vpc_id
+  region = var.aws_region
 
   public_subnet_1a    = module.vpc.public_subnet_1a
   public_subnet_1b    = module.vpc.public_subnet_1b
