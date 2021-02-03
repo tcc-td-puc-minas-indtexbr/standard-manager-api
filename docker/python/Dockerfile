@@ -22,6 +22,7 @@ RUN pip install -r ./${projectName}/requirements.txt && \
 #RUN chmod +x /entrypoint.sh
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /${projectName}/
 # backwards compat
 RUN ln -s usr/local/bin/entrypoint.sh /
 
@@ -33,5 +34,5 @@ WORKDIR /${projectName}
 # CMD
 # CMD [ "chalice", "local", "--host", "0.0.0.0" ]
 # CMD ["python",  "manage.py", "runserver", "0.0.0.0:8000"]
-ENTRYPOINT ['entrypoint.sh']
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["entrypoint.sh"]
