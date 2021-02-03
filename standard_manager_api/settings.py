@@ -30,12 +30,12 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # 'standard-manager-api-alb-556691813.sa-east-1.elb.amazonaws.com',
-    # 'standard-manager-api-nlb-2d37f323bde0cf55.elb.sa-east-1.amazonaws.com'
+    'standard-manager-api-alb-556691813.sa-east-1.elb.amazonaws.com',
+    'standard-manager-api-nlb-2d37f323bde0cf55.elb.sa-east-1.amazonaws.com'
 ]
 
 # ECS alternative way to get hosts
-METADATA_URI = os.environ['ECS_CONTAINER_METADATA_URI']
+METADATA_URI = os.environ['ECS_CONTAINER_METADATA_URI_V4']
 container_metadata = requests.get(METADATA_URI).json()
 ALLOWED_HOSTS.append(container_metadata['Networks'][0]['IPv4Addresses'][0])
 
