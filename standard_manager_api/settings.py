@@ -28,7 +28,10 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG') if not os.getenv('DJANGO_DEBUG') else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'standard-manager-api-alb-556691813.sa-east-1.elb.amazonaws.com',
+    'standard-manager-api-nlb-2d37f323bde0cf55.elb.sa-east-1.amazonaws.com'
+]
 
 # ECS alternative way to get hosts
 METADATA_URI = os.environ['ECS_CONTAINER_METADATA_URI']
