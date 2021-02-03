@@ -24,6 +24,12 @@ resource "aws_codebuild_project" "app_project" {
       name = "SECRET_KEY"
       value = replace(file("../.env"),"SECRET_KEY=", "")
     }
+
+    environment_variable {
+      name = "DJANGO_DEBUG"
+      value = false
+    }
+
   }
 
   source {

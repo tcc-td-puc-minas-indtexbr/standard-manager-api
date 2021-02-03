@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+
+import requests
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -24,9 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG') if not os.getenv('DJANGO_DEBUG') else False
 
 ALLOWED_HOSTS = []
+
+# ECS alternative way to get hosts
+METADATA_URI = os.environ['ECS_CONTAINER_METADATA_URI']
+container_metadata = requests.get(METADATA_URI).json()
+ALLOWED_HOSTS.append(container_metadata['Networks'][0]['IPv4Addresses'][0])
+
+# only for debug
+os.environ['ALLOWED_HOSTS'] = ','.join(ALLOWED_HOSTS)
+
 
 # Application definition
 
