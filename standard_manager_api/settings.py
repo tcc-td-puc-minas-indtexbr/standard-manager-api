@@ -30,6 +30,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
+    'localhost:8000',
     'standard-manager-api-alb-556691813.sa-east-1.elb.amazonaws.com',
     'standard-manager-api-nlb-2d37f323bde0cf55.elb.sa-east-1.amazonaws.com'
 ]

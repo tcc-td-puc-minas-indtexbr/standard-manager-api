@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     privileged: true
+    entrypoint: entrypoint.sh
     ports:
       - 8000:8000
     networks:
