@@ -1,1 +1,1 @@
-docker build -t sigo-frontend -f ./docker/node/production/Dockerfile .
+docker build -t standard-manager-api -f ./docker/python/Dockerfile .
