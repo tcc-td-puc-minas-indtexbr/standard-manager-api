@@ -1,0 +1,1 @@
+java -Djava.library.path=./target/dynamodb-local/DynamoDBLocal_lib -jar ./target/dynamodb-local/DynamoDBLocal.jar $1 $2

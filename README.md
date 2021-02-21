@@ -36,3 +36,8 @@ Micro serviço em Django REST responsável por gerir as normas do sistema SIGO q
 ## License
 
 ## Contributions
+
+## Tests
+Precisa rodar o dynamodb-local
+
+https://chalice-workshop.readthedocs.io/en/latest/media-query/03-add-db.html

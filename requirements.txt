@@ -1,4 +1,4 @@
 python-dotenv
-django-filter
-markdown
-drf-yasg
+jsonformatter
+requests
+pytz
