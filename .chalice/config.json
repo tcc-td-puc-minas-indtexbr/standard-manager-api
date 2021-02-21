@@ -11,7 +11,7 @@
   "stages": {
     "production": {
       "manage_iam_role": false,
-      "iam_role_arn": "arn:aws:iam::821579492372:role/lambda_role",
+      "iam_role_arn": "arn:aws:iam::{$accountId}:role/lambda_role",
       "lambda_functions": {
         "handle_sqs_message": {
           "lambda_timeout": 120
@@ -29,7 +29,7 @@
     },
     "staging": {
       "manage_iam_role": false,
-      "iam_role_arn": "arn:aws:iam::821579492372:role/lambda_role",
+      "iam_role_arn": "arn:aws:iam::{$accountId}:role/lambda_role",
       "lambda_functions": {
         "handle_sqs_message": {
           "lambda_timeout": 120
@@ -47,7 +47,7 @@
     },
     "dev": {
       "manage_iam_role": false,
-      "iam_role_arn": "arn:aws:iam::821579492372:role/lambda_role",
+      "iam_role_arn": "arn:aws:iam::{$accountId}:role/lambda_role",
       "lambda_functions": {
         "handle_sqs_message": {
           "lambda_timeout": 120
@@ -58,7 +58,6 @@
         "DEBUG": "true",
         "LOG_LEVEL": "info",
         "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1OHDYTJP208R1",
-        "XAWS_PROFILE": "tcc-td-puc-minas-admin"
       }
     }
   }
