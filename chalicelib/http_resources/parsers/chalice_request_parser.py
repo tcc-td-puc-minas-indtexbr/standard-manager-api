@@ -126,7 +126,7 @@ class ChaliceRequestParser:
 
         # print('where', self.where)
 
-        if request.method == 'POST':
+        if request.method in ['POST', 'PUT']:
             # json
             if request.json_body is not None:
                 self.where = request.json_body

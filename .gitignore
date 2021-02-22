@@ -24,3 +24,4 @@ venv
 /docker/aws/credentials
 /deployment.zip
 /sam.json
+/.coverage

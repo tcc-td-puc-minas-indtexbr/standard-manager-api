@@ -1,7 +1,10 @@
 from chalicelib.config import get_config
 from chalicelib.database import get_connection
+from chalicelib.enums.messages import MessagesEnum
+from chalicelib.exceptions import ApiException
 from chalicelib.logging import get_logger
 from chalicelib.nosql.repositories.v1.standard import StandardRepository
+import uuid
 
 
 class StandardManagerService:
@@ -23,8 +26,23 @@ class StandardManagerService:
         else:
             self._repository = self.REPOSITORY(self.connection, self.config.DYNAMODB_TABLE_NAME)
 
-    def get(self):
-        pass
+    def get(self, api_request, record_uuid):
+        if not record_uuid:
+            api_ex = ApiException(MessagesEnum.PARAM_REQUIRED_ERROR)
+            api_ex.set_params('uuid')
+            raise api_ex
+
+        # valida a request, validando os campos
+        request = self.validate_request(api_request)
+
+        data = self._repository.get(record_uuid, request['fields'])
+
+        if data is None:
+            api_ex = ApiException(MessagesEnum.FIND_ERROR)
+            api_ex.set_params(uuid)
+            raise api_ex
+
+        return data
 
     def list(self, api_request):
 
@@ -49,15 +67,76 @@ class StandardManagerService:
 
         return count
 
-    def create(self):
-        pass
+    def create(self, api_request):
 
-    def delete(self):
-        pass
+        new_uuid = str(uuid.uuid4())
+        request = self.validate_request(api_request)
+        data = request['where']
 
-    def update(self):
+        if data is None:
+            api_ex = ApiException(MessagesEnum.CREATE_ERROR)
+            api_ex.set_params(data)
+            raise api_ex
+
+        try:
+            result = self._repository.create(new_uuid, data)
+
+            if result is None:
+                api_ex = ApiException(MessagesEnum.CREATE_ERROR)
+                api_ex.set_params(data)
+                raise api_ex
+
+        except Exception as err:
+            self.logger.error(err)
+            if data is None:
+                api_ex = ApiException(MessagesEnum.CREATE_ERROR)
+                raise api_ex
+
+        return data
+
+    def delete(self, api_request, record_uuid):
+        if not record_uuid:
+            api_ex = ApiException(MessagesEnum.PARAM_REQUIRED_ERROR)
+            api_ex.set_params('uuid')
+            raise api_ex
+
+        # valida a request, validando os campos
+        request = self.validate_request(api_request)
+
+        result = self._repository.delete(record_uuid)
+
+        if result is not True:
+            api_ex = ApiException(MessagesEnum.DELETE_ERROR)
+            api_ex.set_params(uuid)
+            raise api_ex
+
+        return result
+
+    def update(self, api_request, record_uuid):
+        if not record_uuid:
+            api_ex = ApiException(MessagesEnum.PARAM_REQUIRED_ERROR)
+            api_ex.set_params('uuid')
+            raise api_ex
+
+        # valida a request, validando os campos
+        request = self.validate_request(api_request)
+        data = request['where']
+
+        data = self._repository.update(record_uuid, data)
+
+        if data is None:
+            api_ex = ApiException(MessagesEnum.UPDATE_ERROR)
+            api_ex.set_params(uuid)
+            raise api_ex
+
+        return data
+
+    def upload(self):
+        # TODO implementar método para fazer upload para o S3 do arquivo da norma
         pass
 
     def validate_request(self, api_request):
         # TODO implementar quando necessario
+        # self.logger.info('api_request', str(api_request))
+
         return api_request

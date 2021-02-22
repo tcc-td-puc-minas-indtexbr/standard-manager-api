@@ -29,7 +29,7 @@ def get_connection():
 
 
 class StandardManagerServiceTestCase(BaseFunctionalTestCase):
-    EXECUTE_FIXTURE = False
+    EXECUTE_FIXTURE = True
     CONFIG = None
 
     @classmethod

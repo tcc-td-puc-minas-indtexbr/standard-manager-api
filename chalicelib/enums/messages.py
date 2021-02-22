@@ -26,12 +26,14 @@ class MessagesEnum(IntEnum):
     LIST_ERROR = 11, 'common.error.list_error', 'Error: Unable to return the list data, please review your request'
     FILTERS_ERROR = 12, 'common.error.filters_error', 'Error: Filters must be informed'
     PARAM_REQUIRED_ERROR = 13, 'common.error.param_required_error', 'Error: Parameter %s is required'
-    FIND_ERROR = 14, 'common.error.find_error', 'Error: Unable to find the specified data'
+    FIND_ERROR = 14, 'common.error.find_error', 'Error: Unable to find the record'
     INVALID_FILTER_ERROR = 15, 'common.error.invalid_filter_error', 'Error: Invalid filter in request'
     INVALID_FIELD_FILTER_ERROR = 16, 'common.error.invalid_filter_error', \
                                  'Error: Invalid filter value (%s) for filter (%s). Expected (%s)'
 
     CREATE_ERROR = 17, 'common.error.create_error', 'Error: Unable to create the record'
+    UPDATE_ERROR = 18, 'common.error.update_error', 'Error: Unable to update the record'
+    DELETE_ERROR = 18, 'common.error.delete_error', 'Error: Unable to delete the record'
 
     # validation 31 - 50
     VALIDATION_ERROR = 31, 'common.error.validation_error', 'Validation error, please review your params: value (%s) for param (%s)'
@@ -39,6 +41,8 @@ class MessagesEnum(IntEnum):
 
     # Database errors 51 - 100
     QUERY_ERROR = 51, 'common.error.query_error', 'Error: Unable to execute the query'
+    INVALID_ENTITY_ID = 52, 'common.error.invalid_entity_id', 'Error: Unable to find the entity'
+    ENTITY_DELETION_SUCCESS = 53, 'common.error.entity_deletion_success', 'Entity deleted with success'
 
     # Events 101 - 200
     EVENT_NOT_REGISTERED_ERROR = 101, 'common.error.event_not_registered_error', 'Error: Event nor registered'
