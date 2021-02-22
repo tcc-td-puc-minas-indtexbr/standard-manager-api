@@ -1,9 +1,12 @@
+import os
+
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 
 from chalicelib import APP_NAME, APP_VERSION
 # Create an APISpec
 from chalicelib.helper import open_vendor_file
+from chalicelib.logging import get_logger
 from chalicelib.openapi.schemas import PingSchema
 
 spec = APISpec(
@@ -19,6 +22,10 @@ spec = APISpec(
 def generate_openapi_yml(spec_object):
     openapi_data = spec_object.to_yaml()
     stream = open_vendor_file("./public/swagger/openapi.yml", "w")
+    get_logger().info('Running at {}'.format(os.environ['APP_ENV']))
     if stream:
-        stream.write(openapi_data)
-        stream.close()
+        # if os.access("./public/swagger/openapi.yml", os.W_OK):
+        if os.environ['APP_ENV'] == 'development':
+            stream.write(openapi_data)
+            stream.close()
+
