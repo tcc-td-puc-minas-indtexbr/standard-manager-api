@@ -1,5 +1,4 @@
 .idea
-vendor
 venv
 /db.sqlite3
 *.pyc
@@ -26,5 +25,9 @@ venv
 /sam.json
 /.coverage
 
+# mantem a vendor
+!vendor
+# ignora os demais arquivos
+vendor/*
 # mantem essa pasta
 !/vendor/public
