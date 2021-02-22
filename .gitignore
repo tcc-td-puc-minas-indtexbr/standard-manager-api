@@ -25,3 +25,6 @@ venv
 /deployment.zip
 /sam.json
 /.coverage
+
+# mantem essa pasta
+!/vendor/public
