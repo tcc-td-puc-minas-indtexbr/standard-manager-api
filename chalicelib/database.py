@@ -18,6 +18,8 @@ def get_connection(connect=True, retry=False):
         connection = None
         try:
             profile = os.environ['AWS_PROFILE'] if 'AWS_PROFILE' in os.environ else 'default'
+            print('profile: {}'.format(profile))
+            logger.info('profile: {}'.format(profile))
             session = boto3.session.Session(profile_name=profile)
             connection = session.resource(
                 'dynamodb',
