@@ -3,8 +3,6 @@ jsonformatter
 requests
 pytz
 apispec
-apispec-chalice
-apispec_webframeworks
 marshmallow
 markdown
 pyyaml
