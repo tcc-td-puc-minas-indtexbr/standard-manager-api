@@ -16,6 +16,17 @@ spec = APISpec(
     plugins=[
         MarshmallowPlugin()
     ],
+    servers=[
+        {
+            "url": "http://localhost:8000",
+            "description": "Development server"
+        },
+        {
+            "url": "https://services.hagatus.com.br/standard",
+            "description": "Production server"
+        }
+    ]
+
 )
 
 
@@ -28,4 +39,3 @@ def generate_openapi_yml(spec_object, logger):
         if os.environ['APP_ENV'] == 'development':
             stream.write(openapi_data)
             stream.close()
-

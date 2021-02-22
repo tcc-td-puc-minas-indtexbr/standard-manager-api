@@ -366,4 +366,4 @@ helper.print_routes(app, logger)
 logger.info('Running at {}'.format(os.environ['APP_ENV']))
 
 # generate de openapi.yml
-# generate_openapi_yml(spec, logger)
+generate_openapi_yml(spec, logger)
