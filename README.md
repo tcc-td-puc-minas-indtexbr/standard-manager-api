@@ -26,6 +26,10 @@ Micro serviço em Lambda responsável por gerir as normas do sistema SIGO que fa
 - SpecAPI - Swagger tool for Python  
 
 ## Installation
+To execute this project properly, you will need execute the script to create the dynamodb table:
+```
+./bin/aws/cloudformation.sh
+```
 
 ### Running Locally
 To create the `venv` and install the modules execute:
