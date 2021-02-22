@@ -10,3 +10,4 @@ then
   PORT=8000
 fi
 chalice local --port $PORT
+#chalice local --no-autoreload

@@ -32,6 +32,16 @@ To execute this project properly, you will need execute the script to create the
 ```
 
 ### Running Locally
+You will need the aws credentials for the profile `sigo-lambdas`:
+```
+cat ~/.aws/credentials
+[sigo-lambdas]
+aws_access_key_id=*********************
+aws_secret_access_key=*********************
+region=sa-east-1
+```
+
+
 To create the `venv` and install the modules execute:
 ```
 ./bin/venv.sh
@@ -47,6 +57,17 @@ Execute the follow command:
 ./bin/chalice/run-local.sh
 ```
 ### Running via docker
+You will need the aws credentials for the profile `sigo-lambdas`:
+Create a copy of `docker/aws/credentials.example` to `docker/aws/credentials`;
+Edit the file with the credentiais.
+```
+cat ./docker/aws/credentials
+[sigo-lambdas]
+aws_access_key_id=*********************
+aws_secret_access_key=*********************
+region=sa-east-1
+```
+
 To execute the build
 ```
 ./bin/runenv.sh --build

@@ -18,12 +18,12 @@ spec = APISpec(
     ],
     servers=[
         {
-            "url": "http://localhost:8000",
-            "description": "Development server"
-        },
-        {
             "url": "https://services.hagatus.com.br/standard",
             "description": "Production server"
+        },
+        {
+            "url": "http://localhost:8000",
+            "description": "Development server"
         }
     ]
 
