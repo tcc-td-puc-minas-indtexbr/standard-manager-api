@@ -17,14 +17,19 @@ def get_connection(connect=True, retry=False):
     if not _CONNECTION:
         connection = None
         try:
-            profile = os.environ['AWS_PROFILE'] if 'AWS_PROFILE' in os.environ else 'default'
-            print('profile: {}'.format(profile))
+            profile = os.environ['AWS_PROFILE'] if 'AWS_PROFILE' in os.environ else None
             logger.info('profile: {}'.format(profile))
-            session = boto3.session.Session(profile_name=profile)
-            connection = session.resource(
-                'dynamodb',
-                region_name="sa-east-1"
-            )
+            if profile:
+                session = boto3.session.Session(profile_name=profile)
+                connection = session.resource(
+                    'dynamodb',
+                    region_name="sa-east-1"
+                )
+            else:
+                connection = boto3.resource(
+                    'dynamodb',
+                    region_name="sa-east-1"
+                )
         except Exception as err:
             if _RETRY_COUNT == _MAX_RETRY_ATTEMPTS:
                 _RETRY_COUNT = 0
