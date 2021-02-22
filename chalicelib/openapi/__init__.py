@@ -19,10 +19,10 @@ spec = APISpec(
 )
 
 
-def generate_openapi_yml(spec_object):
+def generate_openapi_yml(spec_object, logger):
     openapi_data = spec_object.to_yaml()
     stream = open_vendor_file("./public/swagger/openapi.yml", "w")
-    get_logger().info('Running at {}'.format(os.environ['APP_ENV']))
+    logger.info('Running at {}'.format(os.environ['APP_ENV']))
     if stream:
         # if os.access("./public/swagger/openapi.yml", os.W_OK):
         if os.environ['APP_ENV'] == 'development':

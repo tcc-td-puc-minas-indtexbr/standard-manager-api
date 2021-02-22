@@ -1,4 +1,5 @@
 import base64
+import os
 
 import yaml
 
@@ -362,6 +363,7 @@ spec.path(view=standard_update, path="/v1/standard/{uuid}", operations=yaml.safe
 spec.path(view=standard_delete, path="/v1/standard/{uuid}", operations=yaml.safe_load(standard_delete.__doc__))
 
 helper.print_routes(app, logger)
+logger.info('Running at {}'.format(os.environ['APP_ENV']))
 
 # generate de openapi.yml
-generate_openapi_yml(spec)
+# generate_openapi_yml(spec, logger)
