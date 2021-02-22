@@ -7,3 +7,4 @@ apispec-chalice
 apispec_webframeworks
 marshmallow
 markdown
+pyyaml
