@@ -363,7 +363,7 @@ paths:
                 $ref: '#/components/schemas/StandardUpdateResponse'
       summary: Update Standard
 servers:
-- description: Development server
-  url: http://localhost:8000
 - description: Production server
   url: https://services.hagatus.com.br/standard
+- description: Development server
+  url: http://localhost:8000
