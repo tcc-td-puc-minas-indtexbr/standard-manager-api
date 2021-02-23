@@ -18,7 +18,7 @@ spec = APISpec(
     ],
     servers=[
         {
-            "url": "https://services.hagatus.com.br/standard",
+            "url": "https://services.hagatus.com.br/sigo-standard",
             "description": "Production server"
         },
         {
