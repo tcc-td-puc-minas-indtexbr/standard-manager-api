@@ -55,7 +55,7 @@ def register_path(path):
 
 
 def print_env(app, logger):
-    # logger.info('Environment: %s' % os.getenv('APP_ENV'))
+    logger.info('Environment: %s' % os.getenv('APP_ENV'))
     # logger.info('Host: %s' % os.getenv('APP_HOST'))
     # logger.info('Port: %s' % os.getenv('APP_PORT'))
     # logger.info('Database: %s' % os.getenv('DB_HOST'))

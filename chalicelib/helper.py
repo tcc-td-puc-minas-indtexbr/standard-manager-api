@@ -22,6 +22,7 @@ def open_vendor_file(filename, mode):
         if os.path.isfile(full_path):
             return open(full_path, mode=mode)
 
+
 def empty(where):
     result = False
     if isinstance(where, dict) and where == {}:

@@ -6,11 +6,11 @@ import yaml
 from chalicelib.boot import register_vendor
 
 # execute before other codes of app
+register_vendor()
+
 from chalicelib.helper import open_vendor_file
 from chalicelib.http_helper import CUSTOM_DEFAULT_HEADERS
 from chalicelib.openapi import spec, generate_openapi_yml
-
-register_vendor()
 
 # registra a pasta vendor (antes de tudo)
 from chalicelib.enums.messages import MessagesEnum
