@@ -140,3 +140,4 @@ See the license [LICENSE.md](LICENSE.md).
 
 ## Contributions
 * Anderson de Oliveira Contreira [andersoncontreira](https://github.com/andersoncontreira)
+* Allysson Santos [allyssonm](https://github.com/allyssonm)
