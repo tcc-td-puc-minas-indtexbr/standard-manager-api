@@ -39,7 +39,7 @@ class StandardManagerService:
 
         if data is None:
             api_ex = ApiException(MessagesEnum.FIND_ERROR)
-            api_ex.set_params(uuid)
+            api_ex.set_params(record_uuid)
             raise api_ex
 
         return data
