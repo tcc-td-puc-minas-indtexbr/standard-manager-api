@@ -7,7 +7,7 @@ from chalicelib import APP_NAME, APP_VERSION
 # Create an APISpec
 from chalicelib.config import get_config
 from chalicelib.helper import open_vendor_file
-from chalicelib.logging import get_logger
+from chalicelib.openapi import api_schemas
 from chalicelib.openapi.schemas import PingSchema
 
 servers = [
