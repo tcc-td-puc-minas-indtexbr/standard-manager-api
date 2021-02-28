@@ -27,7 +27,31 @@ class StandardRepository:
 
     def list(self, where, offset=None, limit=None, fields=None, sort_by=None, order_by=None):
         scan_params = {}
-        #     filter_expression = None
+        filter_expression = None
+        expression_attributes_names = {}
+        expression_attributes_values = {}
+
+        if where:
+            filter_expression = []
+            for k, v in where.items():
+                key = "#f_" + k
+                val = ":f_" + k
+                if isinstance(v, list):
+                    expression_attributes_names[key] = k
+                    val_array = []
+                    i = 0
+                    for value in v:
+                        val = ":f_" + k + "_" + str(i)
+                        val_array.append(val)
+                        expression_attributes_values[val] = value
+                        i += 1
+                    filter_expression.append(key + " IN (" + ','.join(val_array) + ")")
+
+                else:
+                    filter_expression.append(key + " = " + val)
+                    expression_attributes_names[key] = k
+                    expression_attributes_values[val] = val
+        #
         #     if startswith is not None:
         #         filter_expression = self._add_to_filter_expression(
         #             filter_expression, Attr('name').begins_with(startswith)
@@ -40,8 +64,12 @@ class StandardRepository:
         #         filter_expression = self._add_to_filter_expression(
         #             filter_expression, Attr('labels').contains(label)
         #         )
-        #     if filter_expression:
-        #         scan_params['FilterExpression'] = filter_expression
+        if filter_expression:
+            scan_params['FilterExpression'] = ','.join(filter_expression)
+        if expression_attributes_names:
+            scan_params['ExpressionAttributeNames'] = expression_attributes_names
+        if expression_attributes_values:
+            scan_params['ExpressionAttributeValues'] = expression_attributes_values
         response = self._table.scan(**scan_params)
 
         return response['Items']
