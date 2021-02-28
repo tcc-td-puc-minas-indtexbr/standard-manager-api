@@ -23,7 +23,7 @@
         "LOG_LEVEL": "info",
         "API_SERVER": "https://services.hagatus.com.br/sigo-standard",
         "API_SERVER_DESCRIPTION": "Production server",
-        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1OHDYTJP208R1"
+        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ"
       },
       "tags": {
         "Env": "production"
@@ -43,7 +43,7 @@
         "LOG_LEVEL": "info",
         "API_SERVER": "http://localhost:8000",
         "API_SERVER_DESCRIPTION": "Development server",
-        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1OHDYTJP208R1"
+        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ"
       },
       "tags": {
         "Env": "staging"
@@ -63,7 +63,7 @@
         "LOG_LEVEL": "info",
         "API_SERVER": "https://services.hagatus.com.br/sigo-standard",
         "API_SERVER_DESCRIPTION": "Production server",
-        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1OHDYTJP208R1",
+        "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ",
         "AWS_PROFILE": "sigo-lambdas"
       }
     }

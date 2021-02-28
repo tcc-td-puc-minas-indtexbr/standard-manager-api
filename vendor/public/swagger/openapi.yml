@@ -6,11 +6,254 @@ components:
           example: I'm alive!
           type: string
       type: object
+    Deletion:
+      properties:
+        code:
+          type: integer
+        label:
+          type: string
+        message:
+          type: string
+        params:
+          items:
+            type: string
+          type: array
+        success:
+          type: boolean
+      required:
+      - code
+      type: object
+    Link:
+      properties:
+        href:
+          type: string
+        method:
+          type: string
+        rel:
+          type: string
+      type: object
+    Meta:
+      properties:
+        first:
+          format: url
+          type: string
+        href:
+          format: url
+          type: string
+        last:
+          format: url
+          type: string
+        next:
+          format: url
+          type: string
+        previous:
+          format: url
+          type: string
+      type: object
     Ping:
       properties:
         message:
           example: PONG
           type: string
+      type: object
+    RequestControl:
+      properties:
+        count:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      type: object
+    Standard:
+      properties:
+        comite:
+          type: string
+        currency:
+          example: BRL
+          type: string
+        file:
+          type: string
+        identification:
+          example: ISO 9001:2015
+          type: string
+        language:
+          example: Portuguese
+          type: string
+        objective:
+          type: string
+        organization:
+          example: "ABNT - Associa\xE7\xE3o Brasileira de Normas T\xE9cnicas"
+          type: string
+        pages:
+          type: integer
+        price:
+          example: 170
+          type: number
+        publication_date:
+          format: date
+          type: string
+        status:
+          example: Arquivado
+          type: string
+        title:
+          type: string
+        title_global_language:
+          type: string
+        url:
+          format: url
+          type: string
+        uuid:
+          format: uuid
+          type: string
+        validity_start:
+          format: date
+          type: string
+      type: object
+    StandardCreateRequest:
+      properties:
+        comite:
+          type: string
+        currency:
+          type: string
+        file:
+          type: string
+        identification:
+          example: ISO 9001:2015
+          type: string
+        language:
+          type: string
+        objective:
+          type: string
+        organization:
+          type: string
+        pages:
+          type: integer
+        price:
+          type: number
+        publication_date:
+          format: date
+          type: string
+        status:
+          type: string
+        title:
+          type: string
+        title_global_language:
+          type: string
+        url:
+          format: url
+          type: string
+        validity_start:
+          format: date
+          type: string
+      type: object
+    StandardCreateResponse:
+      properties:
+        control:
+          $ref: '#/components/schemas/RequestControl'
+        data:
+          $ref: '#/components/schemas/Standard'
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    StandardDeleteResponse:
+      properties:
+        control:
+          $ref: '#/components/schemas/RequestControl'
+        data:
+          $ref: '#/components/schemas/Deletion'
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    StandardGetResponse:
+      properties:
+        control:
+          $ref: '#/components/schemas/RequestControl'
+        data:
+          $ref: '#/components/schemas/Standard'
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    StandardListResponse:
+      properties:
+        control:
+          $ref: '#/components/schemas/RequestControl'
+        data:
+          items:
+            $ref: '#/components/schemas/Standard'
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    StandardUpdateRequest:
+      properties:
+        comite:
+          type: string
+        currency:
+          type: string
+        file:
+          type: string
+        identification:
+          example: ISO 9001:2015
+          type: string
+        language:
+          type: string
+        objective:
+          type: string
+        organization:
+          type: string
+        pages:
+          type: integer
+        price:
+          type: number
+        publication_date:
+          format: date
+          type: string
+        status:
+          type: string
+        title:
+          type: string
+        title_global_language:
+          type: string
+        url:
+          format: url
+          type: string
+        validity_start:
+          format: date
+          type: string
+      type: object
+    StandardUpdateResponse:
+      properties:
+        control:
+          $ref: '#/components/schemas/RequestControl'
+        data:
+          $ref: '#/components/schemas/Standard'
+        links:
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
 info:
   title: standard-manager-api
@@ -44,7 +287,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardListResponseSchema'
+                $ref: '#/components/schemas/StandardListResponse'
           description: Success response
       summary: List all standards
     post:
@@ -60,7 +303,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardCreateResponseSchema'
+                $ref: '#/components/schemas/StandardCreateResponse'
       summary: Create Standard
   /v1/standard/{uuid}:
     delete:
@@ -77,7 +320,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardDeleteResponseSchema'
+                $ref: '#/components/schemas/StandardDeleteResponse'
       summary: Delete Standard
     get:
       parameters:
@@ -93,7 +336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardGetResponseSchema'
+                $ref: '#/components/schemas/StandardGetResponse'
           description: Success response
       summary: Get Standard
     put:
@@ -117,8 +360,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandardUpdateResponseSchema'
+                $ref: '#/components/schemas/StandardUpdateResponse'
       summary: Update Standard
 servers:
 - description: Production server
   url: https://services.hagatus.com.br/sigo-standard
+- description: Development server
+  url: http://localhost:8000

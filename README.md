@@ -46,7 +46,7 @@ To create the `venv` and install the modules execute:
 ```
 ./bin/venv.sh
 ```
-If you don't want create the venv, execute the follow commands:
+If you don't want to create the venv, execute the follow commands:
 ```
 ./bin/install.sh
 ./bin/install-vendor.sh
