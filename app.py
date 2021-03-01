@@ -43,12 +43,12 @@ app.log = logger
 region = os.environ['AWS_REGION_ID'] if 'AWS_REGION_ID' in os.environ else ''
 account_id = os.environ['AWS_ACCOUNT_ID'] if 'AWS_ACCOUNT_ID' in os.environ else ''
 
-# uri = "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:account-id:function:function-name/invocations"
+aws_lambda = "arn:aws:lambda:%s:%s:function:api-authorizer-stack-AuthRequest-1U7KVOWJVBOEM" % (region, account_id)
 authorizer = ApiRequestAuthorizer(
     'api-authorizer-request',
     authorizer_uri=(
-        'arn:aws:apigateway:%s:lambda:path/2015-03-31/functions/arn:aws:lambda:%s:%s:function:%s/invocations' %
-        (region, region, account_id, 'api-authorizer-stack-AuthRequest-1U7KVOWJVBOEM'),
+        'arn:aws:apigateway:%s:lambda:path/2015-03-31/functions/%s/invocations' %
+        (region, aws_lambda),
     )
 )
 
