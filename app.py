@@ -3,6 +3,7 @@ import os
 
 import yaml
 
+from chalicelib.api_authorizer import ApiRequestAuthorizer
 from chalicelib.boot import register_vendor
 
 # execute before other codes of app
@@ -22,7 +23,7 @@ from chalicelib.services.v1.standard_manager_service import StandardManagerServi
 from chalicelib.config import get_config
 from chalicelib.logging import get_logger, get_log_level
 from chalicelib import APP_NAME, helper, http_helper, APP_VERSION
-from chalice import Chalice
+from chalice import Chalice, CustomAuthorizer
 
 # config
 config = get_config()
@@ -39,6 +40,16 @@ if not debug:
 # override the log instance
 app.log = logger
 
+region = os.environ['AWS_REGION'] if 'AWS_REGION' in os.environ else ''
+account_id = os.environ['AWS_ACCOUNT_ID'] if 'AWS_ACCOUNT_ID' in os.environ else ''
+
+authorizer = ApiRequestAuthorizer(
+    'api-authorizer-request',
+    authorizer_uri=('arn:aws:apigateway:region:lambda:path/2015-03-31'
+        '/functions/arn:aws:lambda:%s:%s:'
+        'function:%s/invocations' % (region, account_id, 'api-authorizer-stack-AuthRequest-1U7KVOWJVBOEM'),
+    )
+)
 
 @app.route('/', cors=True)
 def index():
@@ -154,7 +165,7 @@ def standard_list():
     return response.get_response(status_code)
 
 
-@app.route('/v1/standard/{uuid}', cors=True)
+@app.route('/v1/standard/{uuid}', authorizer=authorizer, cors=True)
 def standard_get(uuid):
     """
     get:
