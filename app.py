@@ -40,7 +40,7 @@ if not debug:
 # override the log instance
 app.log = logger
 
-region = os.environ['AWS_REGION'] if 'AWS_REGION' in os.environ else ''
+region = os.environ['AWS_REGION_ID'] if 'AWS_REGION_ID' in os.environ else ''
 account_id = os.environ['AWS_ACCOUNT_ID'] if 'AWS_ACCOUNT_ID' in os.environ else ''
 
 authorizer = ApiRequestAuthorizer(
