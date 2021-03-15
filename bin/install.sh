@@ -3,7 +3,7 @@ if test -f ".env.example"; then
 fi
 
 if test -f "requirements.txt"; then
-  python3 -m pip install --user -r requirements.txt
+  python3 -m pip install -r requirements.txt
 fi
 
 if test -f "requirements-vendor.txt"; then

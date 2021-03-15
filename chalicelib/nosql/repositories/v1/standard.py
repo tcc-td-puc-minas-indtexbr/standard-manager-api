@@ -5,7 +5,6 @@ from chalicelib.exceptions import DatabaseException
 class StandardRepository:
     def __init__(self, connection, table_name, logger=None):
         """
-        :param (pytrine.dbal.connection.Connection) connection:
         """
 
         self._connection = connection

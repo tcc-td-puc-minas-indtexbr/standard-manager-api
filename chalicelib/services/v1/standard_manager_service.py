@@ -1,30 +1,43 @@
 from chalicelib.config import get_config
-from chalicelib.database import get_connection
+from chalicelib.nosql_database import get_connection as nosql_get_connection
 from chalicelib.enums.messages import MessagesEnum
 from chalicelib.exceptions import ApiException
 from chalicelib.logging import get_logger
-from chalicelib.nosql.repositories.v1.standard import StandardRepository
+from chalicelib.nosql.repositories.v1.standard import StandardRepository as NoSQLStandardRepository
+from chalicelib.repositories.v1.standard import StandardRepository
 import uuid
 
 
 class StandardManagerService:
     DEBUG = False
     ENTITY = None
+    NOSQL_REPOSITORY = NoSQLStandardRepository
     REPOSITORY = StandardRepository
     VALIDATOR = None
+    NOSQL = False
+    TABLE_NAME = "standard"
 
     def __init__(self, logger=None, config=None, connection=None):
         # logger
+
         self.logger = logger if logger is not None else get_logger()
         # configurations
         self.config = config if config is not None else get_config()
         # database connection
-        self.connection = connection if connection is not None else get_connection()
 
-        if self.DEBUG:
-            self._repository = self.REPOSITORY(self.connection, self.config.DYNAMODB_TABLE_NAME, logger)
+
+        if self.NOSQL:
+            self.connection = connection if connection is not None else nosql_get_connection()
+            if self.DEBUG:
+                self._repository = self.NOSQL_REPOSITORY(self.connection, self.config.DYNAMODB_TABLE_NAME, logger)
+            else:
+                self._repository = self.NOSQL_REPOSITORY(self.connection, self.config.DYNAMODB_TABLE_NAME)
         else:
-            self._repository = self.REPOSITORY(self.connection, self.config.DYNAMODB_TABLE_NAME)
+            self.connection = connection if connection is not None else get_connection()
+            if self.DEBUG:
+                self._repository = self.REPOSITORY(self.connection, self.TABLE_NAME, logger)
+            else:
+                self._repository = self.REPOSITORY(self.connection, self.TABLE_NAME)
 
     def get(self, api_request, record_uuid):
         if not record_uuid:

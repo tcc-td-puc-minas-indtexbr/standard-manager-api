@@ -25,7 +25,11 @@
         "API_SERVER_DESCRIPTION": "Production server",
         "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ",
         "AWS_ACCOUNT_ID": "${AWS::AccountId}",
-        "AWS_REGION_ID": "sa-east-1"
+        "AWS_REGION_ID": "sa-east-1",
+        "DB_HOST": "",
+        "DB_USER": "",
+        "DB_PASSWORD": "",
+        "DB": ""
       },
       "tags": {
         "Env": "production"
@@ -47,7 +51,11 @@
         "API_SERVER_DESCRIPTION": "Development server",
         "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ",
         "AWS_ACCOUNT_ID": "${AWS::AccountId}",
-        "AWS_REGION_ID": "sa-east-1"
+        "AWS_REGION_ID": "sa-east-1",
+        "DB_HOST": "",
+        "DB_USER": "",
+        "DB_PASSWORD": "",
+        "DB": ""
       },
       "tags": {
         "Env": "staging"
@@ -70,7 +78,11 @@
         "DYNAMODB_TABLE_NAME": "standard-manager-dynamodb-StandardTable-1V8SWT9Q96YWJ",
         "AWS_PROFILE": "sigo-lambdas",
         "AWS_ACCOUNT_ID": "${AWS::AccountId}",
-        "AWS_REGION_ID": "sa-east-1"
+        "AWS_REGION_ID": "sa-east-1",
+        "DB_HOST": "localhost",
+        "DB_USER": "root",
+        "DB_PASSWORD": "MySql2019!",
+        "DB": "standard_manager_db"
       }
     }
   }

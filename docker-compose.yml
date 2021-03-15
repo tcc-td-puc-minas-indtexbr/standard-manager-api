@@ -11,6 +11,17 @@ services:
       - tcc-td-network
     volumes:
       - ./:/app
+  standard-manager-mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "MySql2019!"
+      MYSQL_DATABASE: "standard_manager_db"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    networks:
+      - tcc-td-network
 #  elk:
 #    build:
 #      context: .

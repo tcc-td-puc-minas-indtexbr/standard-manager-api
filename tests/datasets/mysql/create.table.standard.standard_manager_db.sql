@@ -1,0 +1,23 @@
+create table standard (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    uuid varchar(48) NOT NULL,
+	identification varchar(100) NOT NULL,
+	publication_date DATE,
+	validity_start DATE,
+	title VARCHAR(255),
+	title_global_language VARCHAR(255),
+	comite VARCHAR(255),
+	pages SMALLINT,
+	status ENUM('Arquivado','Em vigor','Cancelada', 'Aprovada', 'Em Análise'),
+	language VARCHAR(100),
+	organization VARCHAR(255),
+	price DECIMAL(6,2),
+	currency VARCHAR(3),
+	objective TINYTEXT,
+	url VARCHAR(255),
+	file VARCHAR(255),
+    deleted TINYINT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP
+) ENGINE=INNODB;

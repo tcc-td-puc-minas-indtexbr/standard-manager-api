@@ -10,7 +10,7 @@ from tests import ROOT_DIR
 from tests.functional.functionaltestutils import BaseFunctionalTestCase
 from tests.functional.helpers.connection_helper import ConnectionHelper, DynamoDBHelper
 from tests.unit.mocks.boto3_mocks import table_mock
-from tests.unit.mocks.database_mock import get_connection
+from tests.unit.mocks.nosql_database_mock import get_connection
 from tests.unit.testutils import get_function_name, BaseUnitTestCase
 
 

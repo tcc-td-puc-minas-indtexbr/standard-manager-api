@@ -1,8 +1,9 @@
 import os
 from time import sleep
 
+import boto3
+
 from chalicelib.logging import get_logger
-from sqlalchemy import create_engine
 
 logger = get_logger()
 
@@ -15,23 +16,20 @@ def get_connection(connect=True, retry=False):
     global _CONNECTION, _RETRY_COUNT, _MAX_RETRY_ATTEMPTS
     if not _CONNECTION:
         connection = None
-        params = {
-            'host': os.environ['DB_HOST'],
-            'user': os.environ['DB_USER'],
-            'password': os.environ['DB_PASSWORD'],
-            'db': os.environ['DB']
-        }
         try:
-            connection = create_engine('mysql://%s:%s@%s/%s'.format(
-                params['user'], params['password'], params['host'],params['db']
-            ))
-            if connect:
-                connection.begin()
-
-            _CONNECTION = connection
-            _RETRY_COUNT = 0
-            logger.info('Connected')
-
+            profile = os.environ['AWS_PROFILE'] if 'AWS_PROFILE' in os.environ else None
+            logger.info('profile: {}'.format(profile))
+            if profile:
+                session = boto3.session.Session(profile_name=profile)
+                connection = session.resource(
+                    'dynamodb',
+                    region_name="sa-east-1"
+                )
+            else:
+                connection = boto3.resource(
+                    'dynamodb',
+                    region_name="sa-east-1"
+                )
         except Exception as err:
             if _RETRY_COUNT == _MAX_RETRY_ATTEMPTS:
                 _RETRY_COUNT = 0
