@@ -127,8 +127,8 @@ def docs():
     html = html_file.read()
     return http_helper.create_response(body=html, status_code=200, headers=headers)
 
-
-@app.route('/v1/standard', authorizer=authorizer, cors=True)
+# temporariamente removido authorizer=authorizer
+@app.route('/v1/standard', cors=True)
 def standard_list():
     """
     get:
@@ -166,7 +166,8 @@ def standard_list():
     return response.get_response(status_code)
 
 
-@app.route('/v1/standard/{uuid}', authorizer=authorizer, cors=True)
+# temporariamente removido authorizer=authorizer
+@app.route('/v1/standard/{uuid}', cors=True)
 def standard_get(uuid):
     """
     get:
